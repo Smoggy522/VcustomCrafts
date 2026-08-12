@@ -1,0 +1,27 @@
+id: example_crystal
+enabled: true
+name: '<gradient:#8b5cf6:#ec4899><bold>Example Crystal</bold></gradient>'
+type: SHAPED
+shape:
+  - ' R '
+  - 'RDR'
+  - ' R '
+ingredients:
+  R:
+    material: REDSTONE
+    amount: 4
+    match-mode: MATERIAL
+  D:
+    material: DIAMOND
+    amount: 1
+    match-mode: MATERIAL
+result:
+  material: AMETHYST_SHARD
+  amount: 1
+  name: '<gradient:#8b5cf6:#ec4899>Example Crystal</gradient>'
+  lore:
+    - '<gray>Created by VcustomCrafts'
+requirements:
+  permission: vcustomcrafts.craft
+success-chance: 100.0
+

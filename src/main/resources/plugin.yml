@@ -1,0 +1,41 @@
+name: VcustomCrafts
+version: '${version}'
+main: io.github.smoggy522.vcustomcrafts.VcustomCraftsPlugin
+api-version: '1.21'
+authors: [Smoggy522]
+description: Create safe shaped and shapeless recipes with virtually any ItemStack.
+website: https://github.com/Smoggy522/VcustomCrafts
+
+commands:
+  vcustomcrafts:
+    description: VcustomCrafts administration command
+    usage: /vcustomcrafts help
+    aliases: [vcc, customcrafts]
+  recipes:
+    description: Open the custom recipe book
+    usage: /recipes
+
+permissions:
+  vcustomcrafts.use:
+    description: Open the recipe book
+    default: true
+  vcustomcrafts.craft:
+    description: Craft VcustomCrafts recipes
+    default: true
+  vcustomcrafts.admin:
+    description: All VcustomCrafts administrator features
+    default: op
+    children:
+      vcustomcrafts.admin.reload: true
+      vcustomcrafts.admin.editor: true
+      vcustomcrafts.admin.items: true
+      vcustomcrafts.admin.update: true
+  vcustomcrafts.admin.reload:
+    default: op
+  vcustomcrafts.admin.editor:
+    default: op
+  vcustomcrafts.admin.items:
+    default: op
+  vcustomcrafts.admin.update:
+    default: op
+

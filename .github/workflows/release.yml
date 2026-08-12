@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - run: gradle clean build
+      - name: Validate release version and asset
+        shell: bash
+        run: |
+          PROJECT_VERSION="$(sed -n 's/^version=//p' gradle.properties)"
+          if [ "v${PROJECT_VERSION}" != "${GITHUB_REF_NAME}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} must match gradle.properties version ${PROJECT_VERSION}"
+            exit 1
+          fi
+          test -f "build/libs/VcustomCrafts-${PROJECT_VERSION}.jar"
+          mkdir -p release
+          cp "build/libs/VcustomCrafts-${PROJECT_VERSION}.jar" release/
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: release/VcustomCrafts-*.jar

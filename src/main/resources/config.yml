@@ -1,0 +1,23 @@
+# en_US or ru_RU
+language: en_US
+
+debug: false
+
+crafting:
+  # Prevents an accidental huge loop during shift-click crafting.
+  max-shift-crafts: 64
+
+updates:
+  enabled: true
+  owner: Smoggy522
+  repository: VcustomCrafts
+  # NOTIFY only reports an update. DOWNLOAD stages it for the next restart.
+  mode: DOWNLOAD
+  check-interval-hours: 6
+  asset-pattern: '^VcustomCrafts-[0-9]+\.[0-9]+\.[0-9]+(?:[-+][A-Za-z0-9.-]+)?\.jar$'
+  max-download-megabytes: 50
+  # GitHub supplies SHA-256 digests for release assets. Keep this enabled.
+  require-sha256: true
+  # For a private repository, define this environment variable for the server.
+  token-environment-variable: VCUSTOMCRAFTS_GITHUB_TOKEN
+
